@@ -76,7 +76,7 @@ public class GameManager {
             if (mainCircle.isIntersect(circle)) {
                 if (circle.isSmallerThan(mainCircle)) {
                     mainCircle.growRadius(circle);
-
+                    canvasView.updateCounter();
                     circleForDel = circle;
 
                     calculateAndSetCirclesColor();

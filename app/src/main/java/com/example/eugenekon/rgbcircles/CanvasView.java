@@ -1,6 +1,7 @@
 package com.example.eugenekon.rgbcircles;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.util.AttributeSet;
@@ -18,6 +19,7 @@ public class CanvasView extends View implements ICanvasView{
     private Paint scorepaint;
     private Canvas canvas;
     private Toast toast;
+    private int points = 0;
 
     public CanvasView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -28,9 +30,12 @@ public class CanvasView extends View implements ICanvasView{
 
     private void initPaint() {
         paint = new Paint();
-        scorepaint = new Paint();
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
+        scorepaint = new Paint();
+        scorepaint.setTextSize(3);
+        scorepaint.setColor(Color.BLACK);
+
 
 
 
@@ -44,6 +49,11 @@ public class CanvasView extends View implements ICanvasView{
         width = point.x;
         height = point.y;
     }
+    public  void updateCounter() {
+        points = points + 10; // whatever u want
+        canvas.drawText(String.valueOf(points), 350, 50, scorepaint);
+    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -51,7 +61,7 @@ public class CanvasView extends View implements ICanvasView{
         this.canvas = canvas;
         gameManager.onDraw();
         scorepaint.setTextSize(3);
-        
+
 
 
     }
